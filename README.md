@@ -1,45 +1,74 @@
-# Gerador-de-QR-Code-com-Dados-do-Excel
+# Gerador de QR Codes a partir de Dados Excel
 
-```markdown
-# Gerador de QR Code a partir de Dados do Excel
-
-Este projeto é uma ferramenta simples para gerar códigos QR a partir dos dados de uma planilha do Excel. O código lê os dados de uma planilha e gera um código QR para cada entrada, salvando as imagens resultantes em um diretório específico.
+Este projeto gera códigos QR a partir de dados contidos em uma planilha Excel. Utiliza as bibliotecas `qrcode` e `openpyxl` para gerar e salvar imagens de QR Codes com informações específicas extraídas da planilha.
 
 ## Requisitos
 
-Antes de executar o script, você precisará instalar as seguintes bibliotecas Python:
-
-- `qrcode`
-- `openpyxl`
-
-Você pode instalar essas bibliotecas usando o `pip`:
+Antes de começar, você precisará instalar as seguintes bibliotecas Python. Você pode instalá-las usando `pip`:
 
 ```bash
 pip install qrcode[pil] openpyxl
 ```
 
-## Como Usar
+## Configurações do Código
 
-1. **Prepare sua planilha Excel:**
-   - Certifique-se de que seu arquivo Excel esteja no formato `.xlsx`.
-   - Os dados devem estar na primeira coluna da primeira planilha.
+1. **Caminho do Arquivo Excel**
 
-2. **Configure o caminho do arquivo Excel e o diretório de saída:**
-   - Edite o script para apontar para o caminho correto do seu arquivo Excel substituindo `"C:\\###\\###\\###\\###\\Dados.xlsx"`.
-   - Substitua o caminho de saída do arquivo na linha `img.save(f"###\QR.{str((i+1)).zfill(4)}.png")` pelo diretório onde você deseja salvar as imagens dos códigos QR.
+   Altere a variável `path` para o caminho correto do arquivo Excel em seu sistema:
 
-3. **Execute o script:**
-   - Certifique-se de que o Python esteja instalado em seu sistema.
-   - Execute o script Python:
+   ```python
+   path = "C:\\Users\\User\\Downloads\\Qr code\\Dados.xlsx"
+   ```
+
+2. **Caminho de Salvamento dos QR Codes**
+
+   Altere o caminho na linha onde o QR Code é salvo para o diretório desejado:
+
+   ```python
+   img.save(f"C:\\Users\\User\\Downloads\\Qr code\\QR's CODE\\QR.{str((i+1)).zfill(4)}.png")
+   ```
+
+3. **Número de QR Codes a Serem Gerados**
+
+   Modifique o valor `4` na linha abaixo para a quantidade de QR Codes que você deseja gerar:
+
+   ```python
+   for i in range(4):
+   ```
+
+4. **Celulas de Dados**
+
+   As células de onde os dados são extraídos são definidas pelas linhas:
+
+   ```python
+   item_1 = celula.cell(row = i+1, column = 1)
+   item_2 = celula.cell(row = i+1, column = 3)
+   ```
+
+   Ajuste o índice da coluna e da linha conforme a estrutura da sua planilha.
+
+## Executando o Código
+
+1. Certifique-se de que as bibliotecas necessárias estão instaladas.
+2. Ajuste os caminhos e configurações conforme descrito acima.
+3. Execute o script Python:
 
    ```bash
    python nome_do_seu_script.py
    ```
 
-   Certifique-se de substituir `nome_do_seu_script.py` pelo nome real do seu script.
+## Exemplo de Saída
+
+O código gerará imagens PNG de QR Codes com o seguinte formato de nome:
+
+```
+QR.0001.png
+QR.0002.png
+...
+```
+
+As imagens serão salvas no diretório especificado no código.
 
 ## Contribuição
 
-Sinta-se à vontade para contribuir com melhorias ou correções.
-
----
+Sinta-se à vontade para contribuir com melhorias, correções de bugs ou sugestões.
